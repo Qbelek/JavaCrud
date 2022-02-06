@@ -12,8 +12,6 @@ public class User {
     private String name;
     private String email;
 
-    // standard constructors / setters / getters / toString
-
 
     public User(String name, String email) {
         this.name = name;
