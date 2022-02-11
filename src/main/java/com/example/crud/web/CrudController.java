@@ -3,11 +3,13 @@ package com.example.crud.web;
 import an.awesome.pipelinr.Pipeline;
 import com.example.crud.dbaccess.User;
 import com.example.crud.misc.Error;
-import com.example.crud.service.GetUserByName;
+import com.example.crud.service.ChangeUserName;
 import io.vavr.control.Either;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class CrudController {
@@ -21,10 +23,8 @@ public class CrudController {
     }
 
     @GetMapping("/")
-    public Either<Error, User> hello() {
+    public CompletableFuture<Either<Error, User>> hello() {
 
-        var user = new GetUserByName("name").execute(pipeline);
-
-        return user;
+        return new ChangeUserName(1L, "name").execute(pipeline);
     }
 }
